@@ -208,6 +208,5 @@ If you find our **EgoMask** useful for your research, please consider giving thi
       author={Shuo Liang and Yiwu Zhong and Zi-Yuan Hu and Yeyao Tao and Liwei Wang},
       journal={arxiv preprint arXiv:2508.00518},
       year={2025},
-      
 }
 ```
