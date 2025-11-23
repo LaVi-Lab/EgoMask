@@ -12,12 +12,12 @@
 <br>
 
 <div align="center" margin-bottom="3em">
-<a target="_blank" href="https://github.com/ShuoLiang-98">Shuo LIANG</a>,
-<a target="_blank" href="https://scholar.google.com/citations?user=irrbH_IAAAAJ&hl=en">Yiwu Zhong</a>,
-<a target="_blank" href="https://henryhzy.github.io/">Zi-Yuan Hu</a>,
-<a target="_blank" href="https://yeyao-tao.github.io/"> Yeyao Tao</a>,
+<a target="_blank" > Shuo LIANG</a>,
+<a target="_blank" > Yiwu Zhong</a>,
+<a target="_blank" > Zi-Yuan Hu</a>,
+<a target="_blank" > Yeyao Tao</a>,
  and
-<a target="_blank" href="https://lwwangcse.github.io/">Liwei Wang<sup>&ddagger;</sup></a>
+<a target="_blank" > Liwei Wang<sup>&ddagger;</sup></a>
 
 <sup>&ddagger;</sup> Corresponding author.
 
