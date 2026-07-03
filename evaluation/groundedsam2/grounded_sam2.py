@@ -4,10 +4,12 @@ import sys
 import json
 import torch
 import shutil
+import cv2
 import numpy as np
 from PIL import Image
 from typing import Dict, List, Tuple
 import pycocotools.mask as maskUtils
+import supervision as sv
 from torchvision.ops import box_convert
 from evaluation.common_utils import get_all_frame_names, write_json
 
@@ -317,7 +319,57 @@ class Tracker:
 
         self.sam2_tracker = SAM2_Tracker(sam2_config, sam2_checkpoint)
 
-    def tracking_video(self, 
+    def visualize_tracking(
+        self,
+        tracking_results_dir: str,
+        source_frame_dir: str,
+        frame_names: List[str],
+        video_segments: Dict,
+        object_label: str,
+    ):
+        vis_dir = os.path.join(tracking_results_dir, "vis")
+        os.makedirs(vis_dir, exist_ok=True)
+
+        def vis_output_name(frame_idx: int) -> str:
+            return frame_names[frame_idx].replace(".jpg", "") + ".jpg"
+
+        for frame_idx, segments in video_segments.items():
+            img_path = os.path.join(source_frame_dir, frame_names[frame_idx])
+            img = cv2.imread(img_path)
+            if img is None:
+                continue
+
+            object_ids = list(segments.keys())
+            masks = np.concatenate(list(segments.values()), axis=0)
+            detections = sv.Detections(
+                xyxy=sv.mask_to_xyxy(masks),
+                mask=masks,
+                class_id=np.array(object_ids, dtype=np.int32),
+            )
+            annotated_frame = sv.BoxAnnotator().annotate(
+                scene=img.copy(), detections=detections
+            )
+            annotated_frame = sv.LabelAnnotator().annotate(
+                annotated_frame,
+                detections=detections,
+                labels=[object_label] * len(object_ids),
+            )
+            annotated_frame = sv.MaskAnnotator().annotate(
+                scene=annotated_frame, detections=detections
+            )
+            cv2.imwrite(
+                os.path.join(vis_dir, vis_output_name(frame_idx)),
+                annotated_frame,
+            )
+
+        for frame_idx in range(len(frame_names)):
+            if frame_idx not in video_segments:
+                shutil.copyfile(
+                    os.path.join(source_frame_dir, frame_names[frame_idx]),
+                    os.path.join(vis_dir, vis_output_name(frame_idx)),
+                )
+
+    def tracking_video(self,
                     frame_names: List[str],
                     save_source_frames_dir: str,
                     caption_name: str,
@@ -444,7 +496,8 @@ class Tracker:
                 text_threshold: float = 0.35,
                 prompt_type_for_video: str = "box",
                 select_one_highest_conf: bool = True,
-                grounding_with_max_confidence:bool=True):
+                grounding_with_max_confidence:bool=True,
+                vis: bool = False):
         print("[TRACKING] image_dir", image_dir)
 
         os.makedirs(save_source_frames_dir, exist_ok=True)
@@ -496,7 +549,17 @@ class Tracker:
 
         print("Saving to tracking result to", output_tracking_json_results)
 
-        shutil.rmtree(save_source_frames_dir, ignore_errors=True)
+        if vis and tracking_ret is not None:
+            self.visualize_tracking(
+                tracking_results_dir=tracking_results_dir,
+                source_frame_dir=init_state_video_dir,
+                frame_names=frame_names,
+                video_segments=tracking_ret["tracking"],
+                object_label=caption_name.rstrip("."),
+            )
+
+        if init_state_video_dir == save_source_frames_dir:
+            shutil.rmtree(save_source_frames_dir, ignore_errors=True)
         
         # detection
         new_grounding_ret = {}
