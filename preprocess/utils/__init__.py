@@ -1,0 +1,1 @@
+color_idx_map = ["red", "blue", "green", "yellow", "white", "black", "roboflow"]

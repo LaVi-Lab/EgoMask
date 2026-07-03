@@ -1,0 +1,63 @@
+{
+  "dcce51f8-39c4-49c3-9be6-e5d726d50d42": {
+    "green apples": {
+      "bbox_anno": [
+        {
+          "frame_number": 91,
+          "x": 1300,
+          "y": 322,
+          "width": 620,
+          "height": 320,
+          "interpolated": false,
+          "video_frame_number": 8644,
+          "exported_clip_frame_number": 546,
+          "original_width": 1920,
+          "original_height": 1080
+        },
+        {
+          "frame_number": 92,
+          "x": 892,
+          "y": 442,
+          "width": 555,
+          "height": 292,
+          "interpolated": false,
+          "video_frame_number": 8650,
+          "exported_clip_frame_number": 552,
+          "original_width": 1920,
+          "original_height": 1080
+        }
+      ]
+    }
+  },
+  "f05b800e-4e52-4dec-b3bd-c2ca55dfbf50": {
+    "gamepad": {
+      "bbox_anno": [
+        {
+          "frame_number": 77,
+          "x": 1144,
+          "y": 1069,
+          "width": 48,
+          "height": 11,
+          "interpolated": false,
+          "video_frame_number": 5861,
+          "exported_clip_frame_number": 462,
+          "original_width": 1920,
+          "original_height": 1080
+        },
+        {
+          "frame_number": 78,
+          "x": 1054,
+          "y": 1035,
+          "width": 158,
+          "height": 46,
+          "interpolated": false,
+          "video_frame_number": 5867,
+          "exported_clip_frame_number": 468,
+          "original_width": 1920,
+          "original_height": 1080
+        }
+      ]
+    }
+
+  }
+}
