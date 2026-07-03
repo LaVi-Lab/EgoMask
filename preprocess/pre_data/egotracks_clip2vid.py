@@ -3,8 +3,8 @@ Build clip_uid(*.mp4) to video_uid
 """
 import os, sys
 sys.path.append(os.getcwd())
-from common_utils.dataset_io import build_consistent_appearance, refine_bbox_into_5FPS, refine_attributes_occurrence
-from common_utils.io import read_json, read_txt, write_txt
+from utils.dataset_io import build_consistent_appearance, refine_bbox_into_5FPS, refine_attributes_occurrence
+from utils.io import read_json, read_txt, write_txt
 
 import json
 import re
