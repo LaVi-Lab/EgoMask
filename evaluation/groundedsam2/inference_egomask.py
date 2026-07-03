@@ -147,6 +147,7 @@ if __name__ == "__main__":
             prompt_type_for_video="box",
             select_one_highest_conf=True,  
             grounding_with_max_confidence=args.grounding_with_max_confidence,
+            vis=args.vis,
         )
         progress_bar.update(1)
     
