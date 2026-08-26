@@ -203,10 +203,12 @@ We would like to thank the following works for their contributions to the openso
 ## 🚩 Citation
 If you find our **EgoMask** useful for your research, please consider giving this repository a star and citing our paper as follows:
 ```
-@article{liang2025finegrained,
-      title={Fine-grained Spatiotemporal Grounding on Egocentric Videos}, 
-      author={Shuo Liang and Yiwu Zhong and Zi-Yuan Hu and Yeyao Tao and Liwei Wang},
-      journal={arxiv preprint arXiv:2508.00518},
-      year={2025},
+@inproceedings{liang2025fine,
+  title={Fine-grained spatiotemporal grounding on egocentric videos},
+  author={Liang, Shuo and Zhong, Yiwu and Hu, Zi-Yuan and Tao, Yeyao and Wang, Liwei},
+  booktitle={2025 IEEE/CVF International Conference on Computer Vision (ICCV)},
+  pages={9385--9395},
+  year={2025},
+  organization={IEEE}
 }
 ```
